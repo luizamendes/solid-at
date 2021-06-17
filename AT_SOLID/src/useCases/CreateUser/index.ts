@@ -1,12 +1,12 @@
 import { MailTrapMailProvider } from "../../providers/implementations/Mailtrap.provider";
-import { PostgresUsersRepository } from "../../repositories/implementations/PostgreUsers.repository";
+import { LocalUsersRepository } from "../../repositories/implementations/LocalUsers.repository";
 import { CreateUserController } from "./createUser.controller";
 import { CreateUserUseCase } from "./createUser.useCase";
 
 const mailtrapProvider = new MailTrapMailProvider();
-const postgresUserRepository = new PostgresUsersRepository();
+const localUserRepository = new LocalUsersRepository();
 
-const createUserUseCase = new CreateUserUseCase(postgresUserRepository, mailtrapProvider);
+const createUserUseCase = new CreateUserUseCase(localUserRepository, mailtrapProvider);
 
 const createUserController = new CreateUserController(createUserUseCase);
 
