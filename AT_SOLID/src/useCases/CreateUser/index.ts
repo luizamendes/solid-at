@@ -1,12 +1,12 @@
-import { MailTrapMailProvider } from "../../providers/implementations/Mailtrap.provider";
+import { MailCallerMailProvider } from "../../providers/implementations/MailCaller.provider";
 import { LocalUsersRepository } from "../../repositories/implementations/LocalUsers.repository";
 import { CreateUserController } from "./createUser.controller";
 import { CreateUserUseCase } from "./createUser.useCase";
 
-const mailtrapProvider = new MailTrapMailProvider();
+const mailCallerProvider = new MailCallerMailProvider();
 const localUserRepository = new LocalUsersRepository();
 
-const createUserUseCase = new CreateUserUseCase(localUserRepository, mailtrapProvider);
+const createUserUseCase = new CreateUserUseCase(localUserRepository, mailCallerProvider);
 
 const createUserController = new CreateUserController(createUserUseCase);
 
