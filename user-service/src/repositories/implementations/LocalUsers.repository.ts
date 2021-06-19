@@ -3,15 +3,13 @@ import { IUsersRepository } from "../IUsers.repository";
 
 export class LocalUsersRepository implements IUsersRepository {
   private users: User[] = [];
-  
+
   getAllUsers(): User[] {
     return this.users;
   }
 
   findUserByEmail(email: string): User {
-    const user = this.users.find(user => user.email === email);
-    
-    return user; 
+    return this.users.find(user => user.email === email);
   }
   
   saveUser(user: User): void {
@@ -19,17 +17,14 @@ export class LocalUsersRepository implements IUsersRepository {
   }
   
   editUser(id: string, user: User): void {
-    console.log(this.users);
-    this.users.find(usr => {
+    this.users = this.users.map(usr => {
       if (usr.id === id) {
-        usr = user;
-        return;
+        return usr = user;
       }
     });
-    console.log(this.users);
   }
 
   deleteUser(id: string): void {
-    this.users.filter(usr => usr.id === id);
+    this.users = this.users.filter(usr => usr.id !== id);
   }
 }

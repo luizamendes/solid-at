@@ -18,6 +18,6 @@ export class MailCallerMailProvider implements IMailProvider {
       body,
     })
     .then()
-    .catch(error => console.log(error));
+    .catch(error => error);
   }
 }
