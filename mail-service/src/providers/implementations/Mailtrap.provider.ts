@@ -28,6 +28,6 @@ export class MailTrapMailProvider implements IMailProvider {
       },
       subject: message.subject,
       html: message.body
-    })
+    });
   }
 }

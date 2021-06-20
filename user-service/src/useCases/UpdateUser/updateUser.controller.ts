@@ -9,10 +9,10 @@ export class UpdateUserController {
   }
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, email, password } = request.body;
+    const { id, name, email, password } = request.body;
 
     try {
-      await this.updateUserUseCase.execute({ name, email, password });
+      await this.updateUserUseCase.execute({ id, name, email, password });
 
       return response.status(201).send();
     } catch(error) {

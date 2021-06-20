@@ -3,17 +3,23 @@ import { IUsersRepository } from "../IUsers.repository";
 
 export class LocalUsersRepository implements IUsersRepository {
   private users: User[] = [];
-
+  
   getAllUsers(): User[] {
     return this.users;
   }
-
+  
+  findUserById(id: string): User {
+    return this.users.find(user => user.id === id);
+  }
+  
   findUserByEmail(email: string): User {
     return this.users.find(user => user.email === email);
   }
   
-  saveUser(user: User): void {
+  saveUser(user: User): string {
     this.users.push(user);
+
+    return user.id;
   }
   
   editUser(id: string, user: User): void {

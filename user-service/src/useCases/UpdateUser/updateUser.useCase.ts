@@ -10,7 +10,7 @@ export class UpdateUserUseCase {
   }
 
   async execute(data: IUpdateUserRequestDTO) {
-    const user = await this.usersRepository.findUserByEmail(data.email);
+    const user = await this.usersRepository.findUserById(data.id);
 
     if (!user) {
       throw new Error('User does not exist');
@@ -18,6 +18,6 @@ export class UpdateUserUseCase {
     
     const updatedUser = new User(data);
 
-    await this.usersRepository.editUser(updatedUser);
+    await this.usersRepository.editUser(user.id, updatedUser);
   }
 }

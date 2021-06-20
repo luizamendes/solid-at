@@ -26,7 +26,7 @@ export class CreateUserUseCase {
     
     const user = new User(data);
 
-    await this.usersRepository.saveUser(user);
+    const id = await this.usersRepository.saveUser(user);
 
     await this.mailProvider.sendMail({
       to: {
@@ -39,6 +39,8 @@ export class CreateUserUseCase {
       },
       subject: 'Bem vindo!',
       body: '<p>Bem vindo ao nosso app!</p>'
-    })
+    });
+
+    return id;
   }
 }
