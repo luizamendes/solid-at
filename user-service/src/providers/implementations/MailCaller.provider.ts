@@ -1,4 +1,4 @@
-import { IMailProvider, IMessage } from "../IMail.provider";
+import { IGeneralMessage, IMailProvider, IMessage } from "../IMail.provider";
 import axios from 'axios';
 
 export class MailCallerMailProvider implements IMailProvider {
@@ -19,5 +19,21 @@ export class MailCallerMailProvider implements IMailProvider {
     })
     .then()
     .catch(error => error);
-  }
+  };
+
+  async sendMailToList(message: IGeneralMessage): Promise<void> {
+    const { addressList, from, subject, body } = message;
+
+    axios.post('http://localhost:6666/send-email-list', { 
+      to: addressList,
+      from: {
+        name: from.name,
+        email: from.email,
+      },
+      subject,
+      body,
+    })
+    .then()
+    .catch(error => error);
+  };
 }

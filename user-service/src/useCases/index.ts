@@ -4,6 +4,8 @@ import { CreateUserController } from "./CreateUser/createUser.controller";
 import { CreateUserUseCase } from "./CreateUser/createUser.useCase";
 import { DeleteUserController } from "./DeleteUser/deleteUser.controller";
 import { DeleteUserUseCase } from "./DeleteUser/deleteUser.useCase";
+import { NotifyAllUsersController } from "./NotifyAllUsers/notifyAllUsers.controller";
+import { NotifyAllUsersUseCase } from "./NotifyAllUsers/notifyAllUsers.useCase";
 import { ReadAllUsersController } from "./ReadAll/readAllUsers.controller";
 import { ReadAllUsersUseCase } from "./ReadAll/readAllUsers.useCase";
 import { ReadUserController } from "./ReadUser/readUser.controller";
@@ -34,4 +36,8 @@ const updateUserController = new UpdateUserController(updateUserUseCase);
 const deleteUserUseCase = new DeleteUserUseCase(localUserRepository);
 const deleteUserController = new DeleteUserController(deleteUserUseCase);
 
-export { createUserController, readUserController, readAllUsersController, updateUserController, deleteUserController }
+// Notify users
+const notifyAllUsersUseCase = new NotifyAllUsersUseCase(localUserRepository, mailCallerProvider);
+const notifyAllUsersController = new NotifyAllUsersController(notifyAllUsersUseCase);
+
+export { createUserController, readUserController, readAllUsersController, updateUserController, deleteUserController, notifyAllUsersController}

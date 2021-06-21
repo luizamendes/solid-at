@@ -1,4 +1,4 @@
-import { IMailProvider, IMessage } from "../IMail.provider";
+import { IGeneralMessage, IMailProvider, IMessage } from "../IMail.provider";
 import nodemailer from 'nodemailer';
 import Mail from "nodemailer/lib/mailer";
 
@@ -28,6 +28,23 @@ export class MailTrapMailProvider implements IMailProvider {
       },
       subject: message.subject,
       html: message.body
+    });
+  }
+
+  async sendMailToList(message: IGeneralMessage): Promise<void> {
+    message.addressList.forEach(user => {
+      this.transporter.sendMail({
+        to: {
+          name: user.name,
+          address: user.email,
+        },
+        from: {
+          name: message.from.name,
+          address: message.from.email,
+        },
+        subject: message.subject,
+        html: message.body
+      });
     });
   }
 }

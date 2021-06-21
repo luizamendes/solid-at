@@ -10,6 +10,14 @@ export interface IMessage {
   body: string;
 }
 
+export interface IGeneralMessage {
+  addressList: IAddress[];
+  from: IAddress;
+  subject: string;
+  body: string;
+}
+
 export interface IMailProvider {
   sendMail(message: IMessage): Promise<void>;
+  sendMailToList(message: IGeneralMessage): Promise<void>;
 }

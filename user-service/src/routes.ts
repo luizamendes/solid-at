@@ -1,10 +1,14 @@
 import { Router } from "express";
-import { createUserController, readAllUsersController, readUserController } from "./useCases";
+import { createUserController, notifyAllUsersController, readAllUsersController, readUserController } from "./useCases";
 
 const router = Router();
 
 router.post('/users', (req, res) => {
   return createUserController.handle(req, res)
+})
+
+router.post('/notify-users', (req, res) => {
+  return notifyAllUsersController.handle(req, res)
 })
 
 router.get('/users', (req, res) => {
